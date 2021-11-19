@@ -36,4 +36,7 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+Assets/Keys/
 Assets/AncientRuins/
+
+*.log

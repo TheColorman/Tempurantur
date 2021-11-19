@@ -28,7 +28,6 @@ public class CameraLook : MonoBehaviour {
         camAngle = Mathf.Clamp(camAngle, minAngle, maxAngle);
         // Rotate camera
         cam.transform.localEulerAngles = new Vector3(camAngle, 0, 0);
-        print(camAngle);
         // Rotate player
         transform.Rotate(0, mouseX * sensitivity, 0);
     }
