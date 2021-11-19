@@ -14,6 +14,6 @@ public class TestInteraction : Interactable
     }
     public override void OnLooseFocus()
     {
-        Debug.Log("Loose focus on " + gameObject.name);
+        Debug.Log("Lost focus on " + gameObject.name);
     }
 }

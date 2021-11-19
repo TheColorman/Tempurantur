@@ -38,21 +38,21 @@ public class Interactions : MonoBehaviour
 
     void SetFocus(Interactable newFocus)
     {
-       canvas.OnEnable();
         if (newFocus != focus) {
             if (focus != null) {
                 RemoveFocus();
             }
             focus = newFocus;
             newFocus.OnFocus();
+            canvas.OnEnable();
         }
     }
     void RemoveFocus()
     {
-        canvas.OnDisable();
         if (focus != null) {
             focus.OnLooseFocus();
             focus = null;
+            canvas.OnDisable();
         }
     }
 }
