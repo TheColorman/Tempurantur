@@ -3,6 +3,7 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
+[Ll]ogs/
 Assets/AssetStoreTools*
 
 # Visual Studio cache directory
@@ -38,5 +39,7 @@ sysinfo.txt
 
 Assets/Keys/
 Assets/AncientRuins/
+Assets/photorealisticDebris/
+Assets/RubbleAndDebrisSample/
 
 *.log
