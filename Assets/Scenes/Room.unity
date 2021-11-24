@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4605,7 +4605,6 @@ Transform:
   m_LocalPosition: {x: -94.50574, y: -314.19165, z: 269.07715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1773321556}
   - {fileID: 789423563}
   - {fileID: 1539062552}
   - {fileID: 23588674}
@@ -4618,6 +4617,7 @@ Transform:
   - {fileID: 1169854119}
   - {fileID: 1227243160}
   - {fileID: 1820066743}
+  - {fileID: 605050311}
   - {fileID: 2126486123}
   - {fileID: 12774452}
   - {fileID: 232672169}
@@ -6037,7 +6037,7 @@ Transform:
   m_LocalScale: {x: 1.6666665, y: 0.6369426, z: 1.8181819}
   m_Children: []
   m_Father: {fileID: 1773321556}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &402058358
 CapsuleCollider:
@@ -8892,6 +8892,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: feb11bdd0b967f54eb0e5d88798fd7b2, type: 3}
+--- !u!4 &605050311 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 605050310}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &607392992
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27965,6 +27970,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2324956783734759541, guid: f91e4f54c42299a4d82ddece66e10d57, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4752694910969507720, guid: f91e4f54c42299a4d82ddece66e10d57, type: 3}
       propertyPath: m_Radius
       value: 0.5
@@ -28031,6 +28040,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4752694911094523381, guid: f91e4f54c42299a4d82ddece66e10d57, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8846399608481546610, guid: f91e4f54c42299a4d82ddece66e10d57, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
