@@ -4605,6 +4605,7 @@ Transform:
   m_LocalPosition: {x: -94.50574, y: -314.19165, z: 269.07715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1773321556}
   - {fileID: 789423563}
   - {fileID: 1539062552}
   - {fileID: 23588674}
@@ -4617,7 +4618,6 @@ Transform:
   - {fileID: 1169854119}
   - {fileID: 1227243160}
   - {fileID: 1820066743}
-  - {fileID: 605050311}
   - {fileID: 2126486123}
   - {fileID: 12774452}
   - {fileID: 232672169}
@@ -8892,11 +8892,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: feb11bdd0b967f54eb0e5d88798fd7b2, type: 3}
---- !u!4 &605050311 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 605050310}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &607392992
 PrefabInstance:
   m_ObjectHideFlags: 0
