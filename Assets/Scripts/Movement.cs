@@ -24,6 +24,10 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        if (characterController.enabled == false)
+        {
+            return;
+        }
         if (characterController.isGrounded)
         {
             // We are grounded, so recalculate

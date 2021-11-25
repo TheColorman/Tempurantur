@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    public float radius = 3f;
+    public float radius = 2f;
 
     void Awake()
     {
