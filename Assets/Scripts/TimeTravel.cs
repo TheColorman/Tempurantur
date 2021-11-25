@@ -34,14 +34,14 @@ public class TimeTravel : Interactable
     {
         teleporting = true;
         fade.FadeIn();
-        yield return new WaitForSeconds(1f);
         controller.enabled = false;
+        yield return new WaitForSeconds(1f);
         Vector3 TimeTravelDifference = other.transform.position - transform.position;
         player.transform.position += TimeTravelDifference;
-        controller.enabled = true;
 
         fade.FadeOut();
         yield return new WaitForSeconds(1f);
+        controller.enabled = true;
         teleporting = false;
     }
 }
