@@ -568,7 +568,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518fc2441c33ae44fbd5c582c4fd8e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartDoor: {fileID: 0}
   keyCardOne: 0
+  totalTime: 0
+  Chime: {fileID: 0}
+  timeReactor: {fileID: 0}
+  Announcements: []
 --- !u!1 &4752694911148023505
 GameObject:
   m_ObjectHideFlags: 0

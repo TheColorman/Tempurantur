@@ -11,6 +11,7 @@ public class TimeTravel : Interactable
     Fade fade;
     Door door;
     Door otherDoor;
+    AudioSource audioSource;
     List<GameObject> objectsToMove = new List<GameObject>();
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -18,6 +19,7 @@ public class TimeTravel : Interactable
         fade = player.GetComponentInChildren<Fade>();
         door = transform.parent.Find("Door").GetComponent<Door>();
         otherDoor = other.transform.parent.Find("Door").GetComponent<Door>();
+        audioSource = GetComponent<AudioSource>();
     }
     
     public override void OnInteract()
@@ -37,6 +39,7 @@ public class TimeTravel : Interactable
     }
     IEnumerator TeleportRoutine()
     {
+        audioSource.Play();
         teleporting = true;
         fade.FadeIn();
         controller.enabled = false;

@@ -14,19 +14,20 @@ public class Carriable : Interactable
         startRadius = base.radius;
         rb = GetComponent<Rigidbody>();
     }
-    void Update() {
+    void FixedUpdate() {
         if (isBeingCarried) {
-            transform.position = cam.transform.position + cam.transform.forward * 3;
-            Vector3 currentPos = transform.position;
-            currentPos.y = currentPos.y < cam.transform.position.y - 1 ? cam.transform.position.y - 1 : currentPos.y;
-            transform.position = currentPos;
+            Vector3 GoalPos = cam.transform.position + cam.transform.forward * 3;
+            Vector3 currentPos = rb.transform.position;
             // Raycast from camera to get closest wall
             RaycastHit hit;
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 3, LayerMask.NameToLayer("Carrying"))) {
                 // Get position slightly closer to camera
-                transform.position = hit.point - cam.transform.forward * 0.1f;
+                GoalPos = hit.point - cam.transform.forward * 0.1f;
             }
-            transform.rotation = cam.transform.rotation;
+            GoalPos.y = GoalPos.y < cam.transform.position.y - 1 ? cam.transform.position.y - 1 : GoalPos.y;
+
+            rb.transform.position = Vector3.Lerp(currentPos, GoalPos, Time.fixedDeltaTime * 10);
+            rb.transform.rotation = cam.transform.rotation;
             if (Input.GetKeyDown(KeyCode.E) && !cooldown) {
                 Drop();
             }
@@ -35,8 +36,6 @@ public class Carriable : Interactable
     public override void OnInteract() {
         if (!isBeingCarried && !cooldown) {
             Pickup();
-            cooldown = true;
-            Invoke("ResetCooldown", 0.2f);
         }
     }
     void Drop() {
@@ -46,14 +45,16 @@ public class Carriable : Interactable
         cooldown = true;
         base.radius = startRadius;
         isBeingCarried = false;
-        Invoke("ResetCooldown", 0.5f);
+        Invoke("ResetCooldown", 0.1f);
     }
     void Pickup() {
         // Set layermask to "Carrying"
         gameObject.layer = LayerMask.NameToLayer("Carrying");
         rb.useGravity = false;
         isBeingCarried = true;
-        base.radius = Vector3.Distance(transform.position, cam.transform.position) + 2;
+        base.radius = Vector3.Distance(rb.transform.position, cam.transform.position) + 5;
+        cooldown = true;
+        Invoke("ResetCooldown", 0.1f);
     }
     void ResetCooldown() {
         cooldown = false;
