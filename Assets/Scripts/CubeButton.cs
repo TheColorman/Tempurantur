@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class CubeButton : MonoBehaviour
+public class CubeButton : MonoBehaviour
 {
     GameObject Compressable;
     bool isPressed = false;
     public float offset = 5f;
+    Door door;
+    public Door otherDoor;
     void Awake() {
         Compressable = gameObject.transform.Find("Stm_button02").gameObject;
+        door = GetComponentInParent<Door>();
     }
     public void OnTriggerEnter(Collider collider)
     {
@@ -44,6 +47,30 @@ public abstract class CubeButton : MonoBehaviour
         Compressable.transform.localPosition = Compressable.transform.localPosition + new Vector3(0, offset, 0);
         OnButtonReleased();
     }
-    public abstract void OnButtonPressed();
-    public abstract void OnButtonReleased();
+    void OnButtonPressed()
+    {
+        DoorOpen(door);
+        if (otherDoor != null)
+        {
+            DoorOpen(otherDoor);
+        }
+    }
+    void OnButtonReleased()
+    {
+        DoorClose(door);
+        if (otherDoor != null)
+        {
+            DoorClose(otherDoor);
+        }
+    }
+    void DoorOpen(Door Door)
+    {
+        Door.open = true;
+        Door.Open();
+    }
+    void DoorClose(Door Door)
+    {
+        Door.open = false;
+        Door.Close();
+    }
 }

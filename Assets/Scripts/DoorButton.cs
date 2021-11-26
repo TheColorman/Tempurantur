@@ -6,6 +6,10 @@ public class DoorButton : Interactable
 {
     Door door;
     public Door otherDoor;
+    void Start()
+    {
+        door = GetComponentInParent<Door>();
+    }
     public override void OnFocus()
     {
     }
@@ -22,13 +26,13 @@ public class DoorButton : Interactable
     }
     void DoorToggle(Door Door)
     {
-        door.open = !door.open;
+        Door.open = !Door.open;
         if (Door.open)
         {
-            Door.Close();
+            Door.Open();
         } else
         {
-            Door.Open();
+            Door.Close();
         }
     }
 }
