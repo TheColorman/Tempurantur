@@ -11,6 +11,7 @@ public class TimeTravel : Interactable
     Fade fade;
     Door door;
     Door otherDoor;
+    List<GameObject> objectsToMove = new List<GameObject>();
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
         controller = player.GetComponent<CharacterController>();
@@ -44,10 +45,40 @@ public class TimeTravel : Interactable
         Vector3 TimeTravelDifference = other.transform.position - transform.position;
         player.transform.position += TimeTravelDifference;
 
+
+        for (int i = 0; i < objectsToMove.Count; i++)
+        {
+            objectsToMove[i].transform.position += TimeTravelDifference;
+        }
+        objectsToMove.Clear();
+
         fade.FadeOut();
         yield return new WaitForSeconds(1f);
         otherDoor.Open();
         controller.enabled = true;
         teleporting = false;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag != "Player")
+        {
+            if (objectsToMove.Contains(other.gameObject))
+            {
+                return;
+            }
+            objectsToMove.Add(other.gameObject);
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag != "Player")
+        {
+            if (!objectsToMove.Contains(other.gameObject))
+            {
+                return;
+            }
+            objectsToMove.Remove(other.gameObject);
+        }
     }
 }
