@@ -6,11 +6,12 @@ TagManager:
   tags:
   - UI
   - ButtonPress
+  - Carrying
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Carrying
   - Water
   - UI
   - Interactable
