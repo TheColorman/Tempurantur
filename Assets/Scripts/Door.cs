@@ -5,18 +5,23 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     float offset = 0;
-    float offsetMax = 1;
+    public float offsetMax = 1;
     float openSpeed = 5f;
     GameObject door;
     Vector3 doorPos;
     public bool open = false;
     AudioSource audioSource;
     public bool FullyOpen = false;
+    public bool StartOpen = false;
     void Start()
     {
         door = transform.Find("Door").gameObject;
         doorPos = door.transform.localPosition;
         audioSource = GetComponent<AudioSource>();
+        if (StartOpen)
+        {
+            Open();
+        }
     }
     public void Open()
     {
