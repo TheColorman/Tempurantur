@@ -17,7 +17,6 @@ public class Manager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         StartCoroutine(LateStart(1));
         StartCoroutine(PlayAnnouncement(Announcements[0]));
-        StartCoroutine(CountFromTen());
 
     }
     bool ten = false;
