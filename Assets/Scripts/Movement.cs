@@ -33,7 +33,8 @@ public class Movement : MonoBehaviour
             // We are grounded, so recalculate
             // move direction directly from axes
 
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+            Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+            moveDirection = new Vector3(input.x, 0.0f, input.y);
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= speed;
 

@@ -10,6 +10,8 @@ public class TimeLockTimer : Interactable
     AudioSource audioSource;
     Door door;
     public Door otherDoor;
+    public AudioClip unlock;
+    public AudioClip locksound;
 
     void Start()
     {
@@ -33,6 +35,8 @@ public class TimeLockTimer : Interactable
             string timeString = displayedHours.ToString("00") + ":" + displayedMinutes.ToString("00") + ":" + displayedSeconds.ToString("00");
 
             text.text = timeString;
+        } else {
+            text.text = "TIMELOCK";
         }
     }
     public override void OnFocus()
@@ -49,12 +53,14 @@ public class TimeLockTimer : Interactable
             DoorToggle(otherDoor);
         }
 
+        activated = !activated;
         if (activated)
         {
-            return;
+            audioSource.PlayOneShot(unlock);
+        } else {
+            time = 0;
+            audioSource.PlayOneShot(locksound);
         }
-        activated = true;
-        audioSource.Play();
     }
     void DoorToggle(Door Door)
     {

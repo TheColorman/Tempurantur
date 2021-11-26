@@ -38,6 +38,7 @@ public class Interactions : MonoBehaviour
 
     void SetFocus(Interactable newFocus)
     {
+        print(newFocus.name + " is now in focus");
         if (newFocus != focus) {
             if (focus != null) {
                 RemoveFocus();
