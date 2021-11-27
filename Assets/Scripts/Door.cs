@@ -13,11 +13,13 @@ public class Door : MonoBehaviour
     AudioSource audioSource;
     public bool FullyOpen = false;
     public bool StartOpen = false;
+    BoxCollider boxCollider;
     void Start()
     {
         door = transform.Find("Door").gameObject;
         doorPos = door.transform.localPosition;
         audioSource = GetComponent<AudioSource>();
+        boxCollider = door.GetComponent<BoxCollider>();
         if (StartOpen)
         {
             Open();
@@ -27,6 +29,7 @@ public class Door : MonoBehaviour
     {
         offset = 0;
         open = true;
+        boxCollider.enabled = false;
         StartCoroutine(OpenDoor());
         audioSource.Play();
     }
@@ -34,6 +37,7 @@ public class Door : MonoBehaviour
     {
         offset = 0;
         open = false;
+        boxCollider.enabled = true;
         StartCoroutine(CloseDoor());
         audioSource.Play();
     }

@@ -27,6 +27,8 @@ public class Interactions : MonoBehaviour
             }
         } else if (focus != null) {
             RemoveFocus();
+        } else {
+            canvas.OnDisable();
         }
 
         if (Input.GetKeyDown(KeyCode.E)) {
@@ -38,7 +40,6 @@ public class Interactions : MonoBehaviour
 
     void SetFocus(Interactable newFocus)
     {
-        print(newFocus.name + " is now in focus");
         if (newFocus != focus) {
             if (focus != null) {
                 RemoveFocus();

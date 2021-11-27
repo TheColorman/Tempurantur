@@ -13,6 +13,9 @@ public class Pickup : Interactable
     public PickupType pickupType;
     public string pickupText = "Picked up";
     public CanvasScript canvasScript;
+    void Start()
+    {
+    }
     public override void OnInteract()
     {
         // Get player
@@ -33,7 +36,20 @@ public class Pickup : Interactable
                 // manager.keyCardThree = true;
                 break;
         }
-        
+        // Enable canvas
+        canvasScript.OnEnable();
+        // Set text on screen
+        canvasScript.SetText(pickupText);
+        // Disable canvas after 2 seconds
+        canvasScript.Invoke("OnDisable", 2f);
+        // Hide object
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        // Delete after 2 seconds
+        Invoke("DestroyObject", 2f);
+    }
+    void DestroyObject()
+    {
+        Destroy(gameObject);
     }
     public override void OnFocus()
     {

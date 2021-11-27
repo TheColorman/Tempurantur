@@ -20,7 +20,5 @@ public class CanvasScript : MonoBehaviour
         // Get text child
         Text text = transform.GetChild(0).GetComponent<Text>();
         text.text = newText;
-        print("Set text to");
-        print(newText);
     }
 }

@@ -6,6 +6,11 @@ public class Manager : MonoBehaviour
 {
     public Door StartDoor;
     public bool keyCardOne = false;
+    public bool keyCardTwo = false;
+    public bool keyCardThree = false;
+    public bool keyCardOneUnlocked = false;
+    public bool keyCardTwoUnlocked = false;
+    public bool keyCardThreeUnlocked = false;
     public float totalTime;
     AudioSource audioSource;
     public AudioClip Chime;
