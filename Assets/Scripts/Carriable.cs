@@ -14,6 +14,11 @@ public class Carriable : Interactable
         startRadius = base.radius;
         rb = GetComponent<Rigidbody>();
     }
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.E) && !cooldown && isBeingCarried) {
+            Drop();
+        }
+    }
     void FixedUpdate() {
         if (isBeingCarried) {
             Vector3 GoalPos = cam.transform.position + cam.transform.forward * 3;
@@ -26,11 +31,8 @@ public class Carriable : Interactable
             }
             GoalPos.y = GoalPos.y < cam.transform.position.y - 1 ? cam.transform.position.y - 1 : GoalPos.y;
 
-            rb.transform.position = Vector3.Lerp(currentPos, GoalPos, Time.fixedDeltaTime * 10);
-            rb.transform.rotation = cam.transform.rotation;
-            if (Input.GetKeyDown(KeyCode.E) && !cooldown) {
-                Drop();
-            }
+            rb.MovePosition(Vector3.Lerp(currentPos, GoalPos, Time.fixedDeltaTime * 10));
+            rb.MoveRotation(cam.transform.rotation);
         }
     }
     public override void OnInteract() {
