@@ -41,4 +41,10 @@ public class Fade : MonoBehaviour
     {
         this.targetAlpha = 1.0f;
     }
+    public void SetColor(Color color)
+    {
+        Color curColor = this.image.color;
+        color.a = curColor.a;
+        this.image.color = color;
+    }
 }

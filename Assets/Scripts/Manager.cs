@@ -18,13 +18,6 @@ public class Manager : MonoBehaviour
     public AudioClip timeReactor;
     public List<AudioClip> Announcements = new List<AudioClip>();
     float ElevenMinutes = 11 * 60;
-    void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-        StartCoroutine(LateStart(1));
-        StartCoroutine(PlayAnnouncement(Announcements[0]));
-
-    }
     bool ten = false;
     bool nine = false;
     bool eight = false;
@@ -37,6 +30,23 @@ public class Manager : MonoBehaviour
     bool one = false;
     bool thirty = false;
     bool countdown = false;
+    public Fade fade;
+    public CanvasScript popup;
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        StartCoroutine(LateStart(1));
+        StartCoroutine(PlayAnnouncement(Announcements[0]));
+        popup.SetText("TEMPURANTUR");
+        popup.OnEnable();
+        StartCoroutine(DisablePopup(5f));
+    }
+    IEnumerator DisablePopup(float time)
+    {
+        yield return new WaitForSeconds(time);
+        popup.OnDisable();
+    }
+
     void Update()
     {
         totalTime += Time.deltaTime;
@@ -139,5 +149,9 @@ public class Manager : MonoBehaviour
             audioSource.PlayOneShot(Announcements[i]);
             yield return new WaitForSeconds(1f);
         }
+        popup.SetText("You died");
+        popup.OnEnable();
+        fade.SetColor(Color.black);
+        fade.FadeIn();
     }
 }

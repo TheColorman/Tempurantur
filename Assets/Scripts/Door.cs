@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    float offset = 0;
     public float offsetMax = 1;
     public float openSpeed = 5f;
     GameObject door;
@@ -28,7 +27,6 @@ public class Door : MonoBehaviour
     }
     public virtual void Open()
     {
-        offset = 0;
         open = true;
         boxCollider.enabled = !boxCollider.enabled;
         StartCoroutine(OpenDoor());
@@ -36,7 +34,6 @@ public class Door : MonoBehaviour
     }
     public void Close()
     {
-        offset = 0;
         open = false;
         boxCollider.enabled = !boxCollider.enabled;
         StartCoroutine(CloseDoor());
@@ -52,7 +49,6 @@ public class Door : MonoBehaviour
         Animating = true;
         while ((startPos.z + offsetMax) - door.transform.localPosition.z > 0.01f) // while difference between current and target is more than 0.1f (because Lerp never reaches target value)
         {
-            offset += Time.deltaTime * openSpeed;
             door.transform.localPosition = Vector3.Lerp(door.transform.localPosition, new Vector3(startPos.x, startPos.y, startPos.z + offsetMax), 0.1f);
             yield return null;
         }
@@ -68,7 +64,6 @@ public class Door : MonoBehaviour
         Animating = true;
         while (door.transform.localPosition.z - startPos.z > 0.01f)
         {
-            offset -= Time.deltaTime * openSpeed;
             door.transform.localPosition = Vector3.Lerp(door.transform.localPosition, startPos, 0.1f);
             yield return null;
         }

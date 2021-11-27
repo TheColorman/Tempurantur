@@ -8691,6 +8691,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000012771917564, guid: d5ecb501d2732534bbea2a81ac68a047, type: 3}
   m_PrefabInstance: {fileID: 909989395}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &396537392 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2067808567345726216, guid: f91e4f54c42299a4d82ddece66e10d57, type: 3}
+  m_PrefabInstance: {fileID: 1934051225}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429fe3cef56d2a94db1323e87c9ca4c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &397156282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37475,6 +37486,8 @@ MonoBehaviour:
   Animating: 0
   left: {fileID: 1130287088}
   right: {fileID: 62023099}
+  fade: {fileID: 396537392}
+  popupScript: {fileID: 644521911}
 --- !u!82 &1837534211
 AudioSource:
   m_ObjectHideFlags: 0
@@ -39672,9 +39685,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4400707010766297045, guid: f91e4f54c42299a4d82ddece66e10d57, type: 3}
+      propertyPath: fade
+      value: 
+      objectReference: {fileID: 396537392}
+    - target: {fileID: 4400707010766297045, guid: f91e4f54c42299a4d82ddece66e10d57, type: 3}
       propertyPath: Chime
       value: 
       objectReference: {fileID: 8300000, guid: fb9c9e20ac4ea4f4ea55e82585acaacf, type: 3}
+    - target: {fileID: 4400707010766297045, guid: f91e4f54c42299a4d82ddece66e10d57, type: 3}
+      propertyPath: popup
+      value: 
+      objectReference: {fileID: 644521911}
     - target: {fileID: 4400707010766297045, guid: f91e4f54c42299a4d82ddece66e10d57, type: 3}
       propertyPath: StartDoor
       value: 
@@ -39685,7 +39706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4400707010766297045, guid: f91e4f54c42299a4d82ddece66e10d57, type: 3}
       propertyPath: keyCardTwo
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4400707010766297045, guid: f91e4f54c42299a4d82ddece66e10d57, type: 3}
       propertyPath: timeReactor

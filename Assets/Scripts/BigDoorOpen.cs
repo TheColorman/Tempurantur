@@ -9,6 +9,8 @@ public class BigDoorOpen : Door
     float offset = 0f;
     Vector3 leftPos;
     Vector3 rightPos;
+    public Fade fade;
+    public CanvasScript popupScript;
     public override void Start()
     {
         leftPos = left.transform.localPosition;
@@ -19,7 +21,17 @@ public class BigDoorOpen : Door
     {
         boxCollider.enabled = !boxCollider.enabled;
         audioSource.Play();
-        StartCoroutine(OpenDoor());
+        // StartCoroutine(OpenDoor()); // so like only do this if we are gonna have the door open
+        fade.SetColor(Color.black);
+        fade.FadeIn();
+        popupScript.SetText("You escaped.");
+        popupScript.OnEnable();
+        StartCoroutine(CloseGame(5f));
+    }
+    IEnumerator CloseGame(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        Application.Quit();
     }
     IEnumerator OpenDoor()
     {
