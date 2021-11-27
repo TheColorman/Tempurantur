@@ -9,6 +9,7 @@ public class CubeButton : MonoBehaviour
     public float offset = 5f;
     Door door;
     public Door otherDoor;
+    public Door otherOtherDoor;
     void Awake() {
         Compressable = gameObject.transform.Find("Stm_button02").gameObject;
         door = GetComponentInParent<Door>();
@@ -49,28 +50,27 @@ public class CubeButton : MonoBehaviour
     }
     void OnButtonPressed()
     {
-        DoorOpen(door);
+        door.Open();
         if (otherDoor != null)
         {
-            DoorOpen(otherDoor);
+            otherDoor.Open();
+        }
+        if (otherOtherDoor != null)
+        {
+            otherOtherDoor.Open();
         }
     }
     void OnButtonReleased()
     {
-        DoorClose(door);
+        door.Close();
         if (otherDoor != null)
         {
-            DoorClose(otherDoor);
+            otherDoor.Close();
         }
-    }
-    void DoorOpen(Door Door)
-    {
-        Door.open = true;
-        Door.Open();
-    }
-    void DoorClose(Door Door)
-    {
-        Door.open = false;
-        Door.Close();
+        if (otherOtherDoor != null)
+        {
+            otherOtherDoor.Close();
+        }
+
     }
 }

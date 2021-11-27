@@ -223,9 +223,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c3a4a2793f91bf4882a948555c06f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offsetMax: 1
+  openSpeed: 0.05
   open: 0
+  audioSource: {fileID: 0}
   FullyOpen: 0
   StartOpen: 0
+  boxCollider: {fileID: 0}
 --- !u!1 &8875449794350654444
 GameObject:
   m_ObjectHideFlags: 0

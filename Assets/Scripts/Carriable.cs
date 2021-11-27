@@ -9,17 +9,18 @@ public class Carriable : Interactable
     float startRadius;
     bool cooldown = false;
     Rigidbody rb;
-    void Start() {
+    public bool inPresent = false;
+    public virtual void Start() {
         cam = Camera.main;
         startRadius = base.radius;
-        rb = GetComponent<Rigidbody>();
+        rb = gameObject.GetComponent<Rigidbody>();
     }
-    void Update() {
+    public virtual void Update() {
         if (Input.GetKeyDown(KeyCode.E) && !cooldown && isBeingCarried) {
             Drop();
         }
     }
-    void FixedUpdate() {
+    public virtual void FixedUpdate() {
         if (isBeingCarried) {
             Vector3 GoalPos = cam.transform.position + cam.transform.forward * 3;
             Vector3 currentPos = rb.transform.position;
@@ -34,6 +35,10 @@ public class Carriable : Interactable
             rb.MovePosition(Vector3.Lerp(currentPos, GoalPos, Time.fixedDeltaTime * 10));
             rb.MoveRotation(cam.transform.rotation);
         }
+    }
+    public void OnTeleport()
+    {
+        inPresent = !inPresent;
     }
     public override void OnInteract() {
         if (!isBeingCarried && !cooldown) {

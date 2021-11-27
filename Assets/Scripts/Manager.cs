@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
+    public bool playerInPresent = true;
     public Door StartDoor;
     public bool keyCardOne = false;
     public bool keyCardTwo = false;

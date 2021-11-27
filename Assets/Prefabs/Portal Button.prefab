@@ -13,19 +13,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 35.889156
   m_Center: {x: 0, y: -1.7028391, z: 0}
---- !u!135 &1796378953
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3470985478148192859}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 129.63515
-  m_Center: {x: 0, y: -121.46716, z: 0}
 --- !u!114 &8735060760164480399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40,6 +27,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 5
   otherDoor: {fileID: 0}
+  otherOtherDoor: {fileID: 0}
+--- !u!65 &1156109465318934129
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3470985478148192859}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 93.34214, y: 15.071058, z: 93.35647}
+  m_Center: {x: -0.4053861, y: 2.9387846, z: -0.0012636185}
 --- !u!1001 &4389324322012055306
 PrefabInstance:
   m_ObjectHideFlags: 0

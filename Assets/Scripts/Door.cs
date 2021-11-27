@@ -6,18 +6,19 @@ public class Door : MonoBehaviour
 {
     float offset = 0;
     public float offsetMax = 1;
-    float openSpeed = 5f;
+    public float openSpeed = 5f;
     GameObject door;
-    Vector3 doorPos;
+    Vector3 startPos;
     public bool open = false;
-    AudioSource audioSource;
+    public AudioSource audioSource;
     public bool FullyOpen = false;
     public bool StartOpen = false;
-    BoxCollider boxCollider;
-    void Start()
+    public BoxCollider boxCollider;
+    public bool Animating = false;
+    public virtual void Start()
     {
         door = transform.Find("Door").gameObject;
-        doorPos = door.transform.localPosition;
+        startPos = door.transform.localPosition;
         audioSource = GetComponent<AudioSource>();
         boxCollider = door.GetComponent<BoxCollider>();
         if (StartOpen)
@@ -25,11 +26,11 @@ public class Door : MonoBehaviour
             Open();
         }
     }
-    public void Open()
+    public virtual void Open()
     {
         offset = 0;
         open = true;
-        boxCollider.enabled = false;
+        boxCollider.enabled = !boxCollider.enabled;
         StartCoroutine(OpenDoor());
         audioSource.Play();
     }
@@ -37,7 +38,7 @@ public class Door : MonoBehaviour
     {
         offset = 0;
         open = false;
-        boxCollider.enabled = true;
+        boxCollider.enabled = !boxCollider.enabled;
         StartCoroutine(CloseDoor());
         audioSource.Play();
     }
@@ -48,13 +49,15 @@ public class Door : MonoBehaviour
         {
             yield return new WaitUntil(() => FullyOpen == false);
         }
-        while (offset < offsetMax)
+        Animating = true;
+        while ((startPos.z + offsetMax) - door.transform.localPosition.z > 0.01f) // while difference between current and target is more than 0.1f (because Lerp never reaches target value)
         {
             offset += Time.deltaTime * openSpeed;
-            door.transform.localPosition = new Vector3(doorPos.x, doorPos.y, doorPos.z + offset);
+            door.transform.localPosition = Vector3.Lerp(door.transform.localPosition, new Vector3(startPos.x, startPos.y, startPos.z + offsetMax), 0.1f);
             yield return null;
         }
         FullyOpen = true;
+        Animating = false;
     }
     IEnumerator CloseDoor()
     {
@@ -62,13 +65,15 @@ public class Door : MonoBehaviour
         {
             yield return new WaitUntil(() => FullyOpen == true);
         }
-        while (offset > offsetMax * -1)
+        Animating = true;
+        while (door.transform.localPosition.z - startPos.z > 0.01f)
         {
             offset -= Time.deltaTime * openSpeed;
-            door.transform.localPosition = new Vector3(doorPos.x, doorPos.y, doorPos.z + offsetMax + offset);
+            door.transform.localPosition = Vector3.Lerp(door.transform.localPosition, startPos, 0.1f);
             yield return null;
         }
         FullyOpen = false;
+        Animating = false;
     }
 
 }

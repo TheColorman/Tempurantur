@@ -13,6 +13,7 @@ public class TimeTravel : Interactable
     Door otherDoor;
     AudioSource audioSource;
     List<GameObject> objectsToMove = new List<GameObject>();
+    Manager manager;
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
         controller = player.GetComponent<CharacterController>();
@@ -20,6 +21,7 @@ public class TimeTravel : Interactable
         door = transform.parent.Find("Door").GetComponent<Door>();
         otherDoor = other.transform.parent.Find("Door").GetComponent<Door>();
         audioSource = GetComponent<AudioSource>();
+        manager = player.GetComponent<Manager>();
     }
     
     public override void OnInteract()
@@ -48,10 +50,16 @@ public class TimeTravel : Interactable
         Vector3 TimeTravelDifference = other.transform.position - transform.position;
         player.transform.position += TimeTravelDifference;
 
+        manager.playerInPresent = !manager.playerInPresent;
 
         for (int i = 0; i < objectsToMove.Count; i++)
         {
             objectsToMove[i].transform.position += TimeTravelDifference;
+            Carriable carriable = objectsToMove[i].GetComponent<Carriable>();
+            if (carriable != null)
+            {
+                carriable.OnTeleport();
+            }
         }
         objectsToMove.Clear();
 

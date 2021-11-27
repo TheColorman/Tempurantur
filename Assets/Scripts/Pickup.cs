@@ -30,7 +30,7 @@ public class Pickup : Interactable
                 manager.keyCardOne = true;
                 break;
             case PickupType.keyCardTwo:
-                // manager.keyCardTwo = true;
+                manager.keyCardTwo = true;
                 break;
             case PickupType.keyCardThree:
                 // manager.keyCardThree = true;

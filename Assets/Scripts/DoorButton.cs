@@ -26,13 +26,12 @@ public class DoorButton : Interactable
     }
     void DoorToggle(Door Door)
     {
-        Door.open = !Door.open;
         if (Door.open)
         {
-            Door.Open();
+            Door.Close();
         } else
         {
-            Door.Close();
+            Door.Open();
         }
     }
 }
