@@ -138,20 +138,31 @@ public class Manager : MonoBehaviour
     }
     IEnumerator PlayTime(AudioClip clip)
     {
-        audioSource.PlayOneShot(clip);
-        yield return new WaitForSeconds(clip.length);
-        audioSource.PlayOneShot(timeReactor);
+        if (playerInPresent) {
+            audioSource.PlayOneShot(clip);
+            yield return new WaitForSeconds(clip.length);
+            audioSource.PlayOneShot(timeReactor);
+        }
+        yield return null;
     }
     IEnumerator CountFromTen()
     {
         for (int i = 12; i < Announcements.Count; i++)
         {
-            audioSource.PlayOneShot(Announcements[i]);
-            yield return new WaitForSeconds(1f);
+            if (playerInPresent) {
+                audioSource.PlayOneShot(Announcements[i]);
+                yield return new WaitForSeconds(1f);
+            } else {
+                yield return null;
+            }
         }
-        popup.SetText("You died");
-        popup.OnEnable();
-        fade.SetColor(Color.black);
-        fade.FadeIn();
+        if (playerInPresent) {
+            popup.SetText("You died");
+        } else {
+            popup.SetText("The reactor exploded and you are unable to return to the past.");
+        }
+            popup.OnEnable();
+            fade.SetColor(Color.black);
+            fade.FadeIn();
     }
 }
